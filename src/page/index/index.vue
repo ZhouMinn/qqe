@@ -2,7 +2,10 @@
   <div>
     <header class="header">
       <div class="back iconfont">&#xe624;</div>
-      <div class="search"></div>
+      <div class="search">
+      <i class="search-con iconfont">&#xe6a4;</i>
+      <span class="search-btn">输入城市/景点/游玩主题</span>
+      </div>
       <div class="city">北京</div>
     </header>
 
@@ -31,11 +34,11 @@
     
     <ul class="list-item">
       <li class="list-item-con list-border">
-        <span class="tit iconfont">&#xe64e;</span>
+        <i class="tit iconfont">&#xe64e;</i>
         定位失败
       </li>
       <li class="list-item-con">    
-        <span class="tit iconfont">&#xe654;</span>
+        <i class="tit iconfont">&#xe654;</i>
         5折泡温泉
       </li>
     </ul>
@@ -91,12 +94,72 @@
         </div>
       </div>
       <div class="price-title">
-        <span class="iconfont"></span>
+        <i class="hint iconfont">&#xe6a5;</i>
         <div class="price-title-con">
           <span class="ticketfee">票面价</span>
           是指通过景区指定窗口售卖的纸质门票上标注的价格
         </div>
       </div> 
+    </div>
+
+    <div class="footer">
+      <ul class="footer-list">
+        <li class="footer-list-con">
+          <i class="plane iconfont">&#xe70e;</i>
+          <a href="javascript:;" class="footer-list-title">机票</a>
+        </li>
+        <li class="footer-list-con">
+          <i class="plane iconfont">&#xe713;</i>
+          <a href="javascript:;" class="footer-list-title">酒店</a>
+        </li>
+        <li class="footer-list-con">
+          <i class="plane iconfont">&#xe6e3;</i>
+          <a href="javascript:;" class="footer-list-title">公寓</a>
+        </li>
+        <li class="footer-list-con">
+          |
+        </li>
+        <li class="footer-list-con more">
+          <i class="more-list iconfont">&#xe6e3;</i>
+          <a href="javascript:;" class="footer-list-title foot-tit">更多</a>
+        </li>
+      </ul>
+
+      <ul class="detail">
+        <li class="detail-list">
+          <a href="javascript:;" class="detail-list-con">
+          登录
+          </a>
+        </li>
+        <li class="detail-list">
+          <a href="javascript:;" class="detail-list-con">
+          我的订单
+          </a>
+        </li>
+        <li class="detail-list">
+          <a href="javascript:;" class="detail-list-con">
+          最近浏览
+          </a>
+        </li>
+        <li class="detail-list">
+          <a href="javascript:;" class="detail-list-con">
+          关于我们
+          </a>
+        </li>
+      </ul>
+
+      <ul class="toggle">
+        <li class="toggle-list">
+          <a href="javascript:;" class="toggle-list-con">触屏版</a>
+        </li>
+        <li class="toggle-list">
+          <a href="javascript:;" class="toggle-list-con1">电脑版</a>
+        </li>
+      </ul>
+      <div class="address">
+        <p class="address-con">Qunar 京ICP备05021087</p>
+        <p class="address-con address-con1">意见反馈</p>
+      </div>
     </div>
   </div>
 </template>
@@ -173,6 +236,20 @@ export default {
     margin: .14rem .18rem;
     background: #fff;
     border-radius: .1rem;
+  }
+  .search-con {
+    display: block;
+    color:#ebebeb;
+    margin-top:.12rem;
+    margin-left: .2rem;
+    float: left;
+  }
+  .search-btn {
+    float: left;
+    font-size: .26rem;
+    color:#ebebeb;
+    margin-top:.16rem;
+    margin-left: .16rem;
   }
   .city {
     width: 1.14rem;
@@ -433,6 +510,117 @@ export default {
     white-space: nowrap;
   }
   .price-title {
-    
+    margin-top: .1rem;
+    padding: .14rem .1rem;
+    background: #fff;
+  }
+  .hint {
+    display: block;
+    width:.24rem;
+    line-height: .32rem;
+    float: left;
+    font-size: .24rem;
+  }
+  .price-title-con {
+    margin-left:.41rem;
+    font-size: .22rem;
+    line-height: .32rem;
+    color: #777;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ticketfee {
+    color: #535353;
+  }
+  .footer {
+    background: #f3f3f3;
+    height: 2.67rem;
+    position: relative;
+  }
+  .footer-list {
+    box-sizing: border-box;
+    padding:.21rem .42rem;
+    height: .94rem;
+  }
+  .footer-list-con {
+    font-size: .26rem;
+    float: left;
+    line-height: .42rem;
+    box-sizing: border-box;
+    padding-left:0.48rem;
+  }
+  .plane {
+    font-size: .42rem;
+    float: left;
+    color: #a3a3a3;
+  }
+  .footer-list-title {
+    color: #969696;
+    margin-left: .11rem;
+    border-bottom:.01rem solid #969696; 
+  }
+  .more-list {
+    font-size:0.2rem;
+  }
+  .more {
+    box-sizing:border-box;
+    padding-left: 0.29rem;
+  }
+  .foot-tit {
+    border-bottom:none; 
+  }
+  .detail {
+    box-sizing:border-box;
+    height:.54rem;
+    padding-bottom:.3rem;
+  }
+  .detail::after {
+    content: "";
+    width: 100%;
+    height:2px;
+    background: #c4c4c4;
+    bottom: 1.2rem;
+    left:0rem;
+    position: absolute;
+    transform: scaleY(0.5);
+    transform-origin: left bottom;
+
+  }
+  .detail-list {
+    float: left;
+    padding-left:.42rem; 
+    font-size: .26rem;
+   
+  }
+  .detail-list-con {
+    line-height: .24rem;
+  }
+  .toggle {
+    height:.69rem;
+    box-sizing:border-box;
+    padding:.21rem 2.62rem;
+  }
+  .toggle-list {
+    font-size:.26rem;
+    float: left;
+  }
+  .toggle-list-con {
+    color:#060606;
+  }
+  .toggle-list-con1 {
+    padding-left: .65rem;
+  }
+  .address {
+    height:.45rem;
+    box-sizing:border-box;
+    padding-bottom:.22rem;
+    padding-left: 1.64rem;
+  }
+  .address-con {
+    float: left;
+    font-size: .26rem;
+    color: #949494;
+    line-height: .45rem;
   }
 </style>
