@@ -8,29 +8,10 @@
       </div>
       <div class="city">北京</div>
     </header>
-
-    <swiper :options="swiperOption">
-      <swiper-slide v-for="item in swiperInfo" :key="item.id">
-        <div class="swiper-img-con">
-          <img  class="swiper-img" :src="item.imgUrl"/>
-        </div>
-      </swiper-slide>
-      <div class="swiper-pagination"  slot="pagination"></div>
-    </swiper>
-
-    <swiper :options="iconOption">
-      <swiper-slide v-for="(pageInfo, index) in pages" :key="index">
-        <div class="icon-wrapper">
-          <div class="icon-item" v-for="item in pageInfo" :key="item.id">
-            <div class="icon-img-con">
-              <img  class="icon-img" :src="item.imgUrl"/>
-            </div>
-            <div class="icon-title">{{item.title}}</div>
-          </div>
-        </div>
-      </swiper-slide>
-      <div class="icon-pagination"  slot="pagination"></div>
-    </swiper>
+    
+    <swiper-router :swiperInfo="swiperInfo"></swiper-router>
+    
+    <icon-router :pages="pages"></icon-router>
     
     <ul class="list-item">
       <li class="list-item-con list-border">
@@ -165,24 +146,23 @@
 </template>
 
 <script>
+
+import SwiperRouter from './swiper'
+import IconRouter from './iconswiper'
+
 export default {
   name: 'Index',
+  components: {
+    SwiperRouter,
+    IconRouter
+  },
   data () {
     return {
       swiperInfo: [],
       iconInfo: [],
       listInfo: [],
       hotInfo: [],
-      weekInfo: [],
-      swiperOption: {
-        autoplay: 10000,
-        direction: 'horizontal',
-        pagination: '.swiper-pagination',
-        loop: true
-      },
-      iconOption: {
-        pagination: '.icon-pagination'
-      }
+      weekInfo: []
     }
   },
   computed: {
@@ -269,45 +249,8 @@ export default {
     right: 0.36rem;
     top: 0.38rem; 
   }
-  .swiper-img-con {
-    overflow: hidden;
-    width: 100%;
-    height:0;
-    padding-bottom: 31.25%; 
-
-  }
-  .swiper-img {
-    width: 100%;
-  }
-  .icon-wrapper {
-    position: relative;
-  }
-  .icon-item {
-    box-sizing: border-box;
-    float: left;
-    width: 25%;
-    padding-top: .4rem;
-    text-align: center;
-  }
-  .icon-img-con {
-    width:.66rem;
-    height: .66rem;
-    display: inline-block;
-  }
-  .icon-img {
-    width: 100%;
-  }
-  .icon-title {
-    box-sizing: border-box;
-    font-size: 0.26rem;
-    color: #1b1b1b;
-    text-align: center;
-    padding-top:0.21rem;
-  }
-  .icon-pagination {
-    padding:0.2rem 0;
-    text-align: center;
-  }
+  
+ 
   .list-item {
     display: flex;
     position: relative;
@@ -323,11 +266,12 @@ export default {
     transform-origin: left bottom;
   }
   .list-item-con {
-    height: 0.98rem;
     flex: 1;
     text-align: center;
     line-height: 0.98rem;
     font-size: 0.26rem;
+    height:0;
+    padding-bottom: .98rem;
   }
   .list-border::before {
     content: "";
