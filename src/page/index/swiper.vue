@@ -14,14 +14,14 @@ export default {
   props: ['swiperInfo'],
   data () {
     return {
-    	swiperOption: {
-			  autoplay: 10000,
-			  direction: 'horizontal',
-			  pagination: '.swiper-pagination',
-				loop: true
-			}
-		}
-	}
+      swiperOption: {
+        autoplay: 10000,
+        direction: 'horizontal',
+        pagination: '.swiper-pagination',
+        loop: true
+      }
+    }
+  }
 }
 </script>
 <style scoped>

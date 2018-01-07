@@ -6,7 +6,9 @@
       <i class="search-con iconfont">&#xe6a4;</i>
       <span class="search-btn">输入城市/景点/游玩主题</span>
       </div>
+      <router-link :to="'/city'">
       <div class="city">北京</div>
+      </router-link>
     </header>
     
     <swiper-router :swiperInfo="swiperInfo"></swiper-router>
@@ -34,7 +36,7 @@
 
     <div class="lazy-load">
       <h2 class="modtitle">热销推荐</h2>
-      <div class="mp-hot-con">
+      <div class="mp-hot-con" ref="scrollCon">
         <ul class="hot-list">
           <li class="hot-list-con" v-for="item in hotInfo" :key="item.id">
             <a href="javascript:;" class="hot-list-click">
@@ -61,18 +63,20 @@
 
     <div class="week">
       <h2 class="modtitle">周末去哪儿</h2>
-      <div>
-        <div class="week-list" v-for="item in weekInfo" :key="item.id">
-          <a href="javascript">
-            <div class="week-list-con">
-              <img :src="item.imgUrl" alt="" class="week-list-img">
-            </div>
-            <div class="title">
-              <p class="title-name">{{item.title}}</p>
-              <p class="title-page">{{item.titlepage}}</p>
-            </div>
-          </a>
-        </div>
+      <div class="modtitle-list" ref="scrollList">
+        <ul>
+          <div class="week-list" v-for="item in weekInfo" :key="item.id">
+            <a href="javascript">
+              <div class="week-list-con">
+                <img :src="item.imgUrl" alt="" class="week-list-img">
+              </div>
+              <div class="title">
+                <p class="title-name">{{item.title}}</p>
+                <p class="title-page">{{item.titlepage}}</p>
+              </div>
+            </a>
+          </div>
+        </ul>
       </div>
       <div class="price-title">
         <i class="hint iconfont">&#xe6a5;</i>
@@ -149,6 +153,7 @@
 
 import SwiperRouter from './swiper'
 import IconRouter from './iconswiper'
+import BScroll from 'better-scroll'
 
 export default {
   name: 'Index',
@@ -180,7 +185,7 @@ export default {
   },
   methods: {
     getIndexData () {
-      this.$http.get('./static/index.json')
+      this.$http.get('/api')
         .then(this.handleGetDataSucc.bind(this))
     },
     handleGetDataSucc (res) {
@@ -192,10 +197,32 @@ export default {
         this.hotInfo = body.data.hot
         this.weekInfo = body.data.week
       }
+    },
+    getScrollTop () {
+      this.scroll = new BScroll(this.$refs.scrollCon)
+    },
+    getscrollListTop () {
+      this.scroll = new BScroll(this.$refs.scrollList)
+    }
+  },
+  watch: {
+    hotInfo () {
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
+    },
+    weekInfo () {
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
     }
   },
   created () {
     this.getIndexData()
+  },
+  updated () {
+    this.getScrollTop()
+    this.getscrollListTop()
   }
 }
 </script>
@@ -350,7 +377,8 @@ export default {
     background:#f5f5f5;
   }
   .mp-hot-con {
-   
+   height: 3.5rem;
+   overflow: hidden;
   }
   .hot-list {
 
@@ -422,6 +450,10 @@ export default {
   .week-list {
     margin-bottom: .1rem;
     background: #fff;
+  }
+  .modtitle-list {
+    height: 8rem;
+    overflow: hidden;
   }
   .week-list-con {
     height:0;

@@ -16,16 +16,15 @@
 
 <script>
 	export default {
-		props: ['pages'],
-		data () {
-			return {
-				iconOption: {
-        	pagination: '.icon-pagination'
-      	}
-			}
-		}
-	}
-
+	  props: ['pages'],
+  data () {
+    return {
+      iconOption: {
+        pagination: '.icon-pagination'
+      }
+    }
+  }
+}
 </script>
 
 <style>
